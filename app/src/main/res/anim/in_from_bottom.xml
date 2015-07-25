@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set>
+    <objectAnimator
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="300"
+        android:propertyName="Y"
+        android:valueFrom="@integer/in_from_bottom_from"
+        android:valueTo="@integer/in_from_bottom_to"
+        android:valueType="floatType"/>
+</set>

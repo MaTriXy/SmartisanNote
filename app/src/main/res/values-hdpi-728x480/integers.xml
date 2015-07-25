@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="in_from_left_from">-480</integer>
+    <integer name="in_from_left_to">0</integer>
+    <integer name="in_from_right_from">480</integer>
+    <integer name="in_from_right_to">0</integer>
+    <integer name="out_to_left_from">0</integer>
+    <integer name="out_to_left_to">-480</integer>
+    <integer name="out_to_right_from">0</integer>
+    <integer name="out_to_right_to">480</integer>
+    <integer name="in_from_bottom_from">728</integer>
+    <integer name="in_from_bottom_to">0</integer>
+    <integer name="out_to_bottom_from">0</integer>
+    <integer name="out_to_bottom_to">728</integer>
+</resources>

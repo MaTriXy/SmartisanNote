@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="detail_content_calendars">
+        <item quantity="other">%1$s calendar tasks</item>
+        <item quantity="one">%1$s calendar task</item>
+    </plurals>
+    <plurals name="detail_content_notes">
+        <item quantity="other">%1$s notes</item>
+        <item quantity="one">%1$s note</item>
+    </plurals>
+</resources>

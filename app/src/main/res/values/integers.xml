@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="in_from_left_from">-480</integer>
+    <integer name="in_from_left_to">0</integer>
+    <integer name="in_from_right_from">480</integer>
+    <integer name="in_from_right_to">0</integer>
+    <integer name="out_to_left_from">0</integer>
+    <integer name="out_to_left_to">-480</integer>
+    <integer name="out_to_right_from">0</integer>
+    <integer name="out_to_right_to">480</integer>
+    <integer name="letter_listview_text_size">30</integer>
+    <integer name="item_icon_size">144</integer>
+    <integer name="config_delBtnAnimTime">16</integer>
+    <integer name="config_longweibo_bitmap_png_maxheight">20000</integer>
+    <integer name="config_longweibo_maxline">501</integer>
+    <integer name="share_weibo_image_item_max_width">858</integer>
+    <integer name="share_weibo_image_item_max_height">3840</integer>
+    <integer name="detail_note_image_pager_item_describe_ems">15</integer>
+    <integer name="detail_note_content_max_line">3000</integer>
+    <integer name="detail_note_content_max_count">30000</integer>
+    <integer name="image_preview_indicate_shadow_dy">2</integer>
+    <integer name="list_item_delete_edge_extra">30</integer>
+    <integer name="note_list_adjust_item_animation_duration">200</integer>
+    <integer name="transit_duration">300</integer>
+    <integer name="maxGridColumns">3</integer>
+    <integer name="maxGridRows">2</integer>
+    <integer name="eyeAnimDuration">16</integer>
+    <integer name="setting_item_top_int">7</integer>
+</resources>

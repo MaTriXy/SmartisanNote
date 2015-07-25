@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background_switch" format="reference"/>
+    <attr name="background_act" format="reference"/>
+    <attr name="background_inact" format="reference"/>
+    <attr name="text_on" format="string"/>
+    <attr name="text_off" format="string"/>
+    <attr name="title" format="string"/>
+    <attr name="summary" format="string"/>
+    <attr name="isEnable" format="boolean"/>
+    <attr name="subTitle" format="string"/>
+    <attr name="subTitleFontSize" format="dimension"/>
+    <attr name="arrow" format="reference"/>
+    <attr name="singleLine" format="boolean"/>
+    <attr name="iconFrame" format="reference"/>
+    <attr name="arrowRightMargin" format="dimension"/>
+    <attr name="itemSwitchIcon" format="reference|color"/>
+    <attr name="itemSwitchTitle" format="string"/>
+    <attr name="itemSwitchSummary" format="string"/>
+    <attr name="itemSwitchIsEnable" format="boolean"/>
+    <attr name="itemSwitchTitleSize" format="dimension"/>
+    <attr name="itemSwitchSummarySize" format="dimension"/>
+    <attr name="itemSwitchTitleColor" format="color"/>
+    <attr name="itemtitle" format="string"/>
+    <attr name="titleColor" format="color"/>
+    <attr name="titleSize" format="dimension"/>
+    <attr name="backText" format="string"/>
+    <attr name="backTextColor" format="color"/>
+    <attr name="backTextSize" format="dimension"/>
+    <attr name="okText" format="string"/>
+    <attr name="okTextColor" format="color"/>
+    <attr name="okTextSize" format="dimension"/>
+    <attr name="textwidth" format="dimension"/>
+    <attr name="typeface">
+        <enum name="monospace" value="3"/>
+        <enum name="normal" value="0"/>
+        <enum name="sans" value="1"/>
+        <enum name="serif" value="2"/>
+    </attr>
+    <attr name="tltextwidth" format="dimension"/>
+    <attr name="textSize" format="dimension"/>
+    <attr name="textColor" format="reference|color"/>
+    <attr name="lineSpacingExtra" format="dimension"/>
+    <attr name="quteLineColor" format="color"/>
+    <attr name="quteLineWidth" format="dimension"/>
+    <attr name="quteLineMarginLeft" format="dimension"/>
+    <attr name="titleBigSize" format="dimension"/>
+    <attr name="titleMiddleSize" format="dimension"/>
+    <attr name="titleSmallSize" format="dimension"/>
+    <attr name="quoteContentMarginLeft" format="dimension"/>
+    <attr name="textContentMarginTop" format="dimension"/>
+    <attr name="listMarginLeft" format="dimension"/>
+    <attr name="collapsed_height" format="dimension"/>
+    <attr name="adjust_item_animation_duration" format="float"/>
+    <attr name="drag_scroll_start" format="float"/>
+    <attr name="max_drag_scroll_speed" format="float"/>
+    <attr name="float_background_color" format="color"/>
+    <attr name="remove_mode">
+        <enum name="clickRemove" value="0"/>
+        <enum name="flingRemove" value="1"/>
+    </attr>
+    <attr name="track_drag_sort" format="boolean"/>
+    <attr name="float_alpha" format="float"/>
+    <attr name="slide_shuffle_speed" format="float"/>
+    <attr name="remove_animation_duration" format="integer"/>
+    <attr name="drop_animation_duration" format="integer"/>
+    <attr name="drag_enabled" format="boolean"/>
+    <attr name="sort_enabled" format="boolean"/>
+    <attr name="remove_enabled" format="boolean"/>
+    <attr name="drag_start_mode">
+        <enum name="onDown" value="0"/>
+        <enum name="onLongPress" value="2"/>
+        <enum name="onMove" value="1"/>
+    </attr>
+    <attr name="drag_handle_id" format="integer"/>
+    <attr name="fling_handle_id" format="integer"/>
+    <attr name="click_remove_id" format="integer"/>
+    <attr name="use_default_controller" format="boolean"/>
+    <attr name="over_scroll_enable" format="boolean"/>
+    <attr name="over_scroll_up_max" format="integer"/>
+    <attr name="over_scroll_down_max" format="integer"/>
+    <attr name="scroll_enabled" format="boolean"/>
+    <attr name="scroll_mode">
+        <enum name="both" value="2"/>
+        <enum name="left" value="1"/>
+        <enum name="right" value="0"/>
+    </attr>
+    <attr name="restore_eat_back_key" format="boolean"/>
+    <attr name="left_btns_width" format="dimension"/>
+    <attr name="right_btns_width" format="dimension"/>
+    <attr name="max_left_btns_width" format="dimension"/>
+    <attr name="max_right_btns_width" format="dimension"/>
+    <attr name="velocity_factor" format="float"/>
+    <attr name="overflow_velocity_factor" format="float"/>
+    <attr name="scroll_factor" format="float"/>
+    <attr name="scroll_handle_id" format="integer"/>
+    <attr name="left_btns_id" format="integer"/>
+    <attr name="right_btns_id" format="integer"/>
+</resources>

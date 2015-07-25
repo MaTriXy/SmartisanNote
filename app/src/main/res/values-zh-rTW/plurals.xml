@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="detail_content_calendars">
+        <item quantity="other">%1$s 條日曆任務</item>
+    </plurals>
+    <plurals name="detail_content_notes">
+        <item quantity="other">%1$s 個便簽</item>
+    </plurals>
+</resources>
