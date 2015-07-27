@@ -41,7 +41,7 @@ public class ListNotesItemLayout(private val mContext: Context, attrs: Attribute
     public fun open() {
         mDeleteTextView?.setVisibility(View.VISIBLE)
         mClipImageView?.setBackgroundResource(R.drawable.note_item_clip_up)
-        mDetailLinearLayout!!.setOnTouchListener(object : View.OnTouchListener {
+        mDetailLinearLayout?.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
                 close()
                 return true
@@ -52,7 +52,7 @@ public class ListNotesItemLayout(private val mContext: Context, attrs: Attribute
     public fun close() {
         mDeleteTextView?.setVisibility(View.GONE)
         mClipImageView?.setBackgroundResource(R.drawable.note_item_clip_normal)
-        mDetailLinearLayout!!.setOnTouchListener(null)
+        mDetailLinearLayout?.setOnTouchListener(null)
     }
 
     override protected fun onFinishInflate() {
