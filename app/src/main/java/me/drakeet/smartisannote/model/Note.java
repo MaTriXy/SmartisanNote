@@ -20,6 +20,18 @@ public class Note extends DataSupport {
     boolean presetTip;
     int position;
 
+    public Note() {
+    }
+
+    public Note(String title, String detail, String modifyTime, boolean favorite,
+                boolean presetTip) {
+        this.title = title;
+        this.detail = detail;
+        this.modifyTime = modifyTime;
+        this.favorite = favorite;
+        this.presetTip = presetTip;
+    }
+
     public String getDetail() {
         return detail;
     }
