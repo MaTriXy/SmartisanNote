@@ -10,11 +10,11 @@ public object Preset {
 
     public fun getTips(): ArrayList<Note>? {
         var list = ArrayList<Note>()
-        list.add(Note("title0", "detail0", "modifyTime", false, true))
-        list.add(Note("title1", "detail1", "modifyTime", false, true))
-        list.add(Note("title2", "detail2", "modifyTime", false, true))
-        list.add(Note("title3", "detail3", "modifyTime", false, true))
-        list.add(Note("title4", "detail4", "modifyTime", false, true))
+        list.add(Note("这", "Preset0", "今天 15:05 7月28日", false, true))
+        list.add(Note("是一", "Preset1", "今天 15:05 7月28日", false, true))
+        list.add(Note("个开源", "Preset2", "今天 15:05 7月28日", false, true))
+        list.add(Note("版的锤子", "Preset3", "今天 15:05 7月28日", false, true))
+        list.add(Note("便签感谢你", "Preset4", "今天 15:05 7月28日", false, true))
         return list
     }
 

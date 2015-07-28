@@ -32,7 +32,8 @@ public class ListNotesItemLayout(private val mContext: Context, attrs: Attribute
     fun setNote(note: Note) {
         mNote = note
         //todo
-        mSummaryTextView?.setText(mNote?.getDetail())
+        mSummaryTextView?.setText(mNote?.getTitle())
+        mTimeTextView?.setText(mNote?.getModifyTime())
     }
 
     fun getNote() : Note? {
