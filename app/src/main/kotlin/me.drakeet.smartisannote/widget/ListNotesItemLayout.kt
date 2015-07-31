@@ -1,11 +1,11 @@
 package me.drakeet.smartisannote.widget
 
 import android.content.Context
+import android.graphics.Point
 import android.support.v4.widget.ViewDragHelper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -30,6 +30,10 @@ public class ListNotesItemLayout : RelativeLayout {
 
     private var mNote: Note? = null
     private var mDragHelper: ViewDragHelper? = null
+    private val mAutoBackOriginPos = Point()
+    private val mAutoFullShowPos = Point()
+
+    private var mDragDistence: Int = 0
 
     public constructor(context: Context) : super(context) {
         init()
@@ -48,21 +52,40 @@ public class ListNotesItemLayout : RelativeLayout {
     }
 
     public fun init() {
+        mDragDistence = getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
         mDragHelper = ViewDragHelper.create(this, 1.0f, object : ViewDragHelper.Callback() {
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {
                 return child == mDetailLinearLayout
             }
 
             override public fun clampViewPositionHorizontal(child: View, left: Int, dx: Int): Int {
-                val newLeft = Math.min(getResources()
-                        .getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left), Math.max(left, 0)) //TODO
+                val newLeft = Math.min(mDragDistence, Math.max(left, 0)) //TODO
                 return newLeft
             }
 
             override public fun getViewHorizontalDragRange(child: View): Int {
-                return getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
+                return mDragDistence
             }
+
+            override public fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
+                if (releasedChild === mDetailLinearLayout) {
+                    if (xvel > mDragDistence / 3) {
+                        mDragHelper!!.settleCapturedViewAt(mAutoFullShowPos.x, mAutoFullShowPos.y)
+                    } else {
+                        mDragHelper!!.settleCapturedViewAt(mAutoBackOriginPos.x, mAutoBackOriginPos.y)
+                    }
+                    invalidate()
+                }
+            }
+
+
         })
+    }
+
+    override public fun computeScroll() {
+        if (mDragHelper!!.continueSettling(true)) {
+            invalidate()
+        }
     }
 
     override public fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
@@ -89,6 +112,15 @@ public class ListNotesItemLayout : RelativeLayout {
         mDeleteTextView?.setVisibility(View.GONE)
         mClipImageView?.setBackgroundResource(R.drawable.note_item_clip_normal)
         mDetailLinearLayout?.setOnTouchListener(null)
+    }
+
+    override protected fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        super.onLayout(changed, l, t, r, b)
+
+        mAutoBackOriginPos.x = mDetailLinearLayout!!.getLeft()
+        mAutoBackOriginPos.y = mDetailLinearLayout!!.getTop()
+        mAutoFullShowPos.x = mDragDistence
+        mAutoFullShowPos.y = mDetailLinearLayout!!.getTop()
     }
 
     override protected fun onFinishInflate() {
