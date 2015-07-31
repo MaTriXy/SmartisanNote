@@ -1,9 +1,11 @@
 package me.drakeet.smartisannote.widget
 
 import android.content.Context
+import android.support.v4.widget.ViewDragHelper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -14,8 +16,7 @@ import me.drakeet.smartisannote.model.Note
 /**
  * Created by drakeet on 7/26/15.
  */
-public class ListNotesItemLayout(private val mContext: Context, attrs: AttributeSet) :
-        RelativeLayout(mContext, attrs) {
+public class ListNotesItemLayout : RelativeLayout {
 
     private var mDetailLinearLayout: LinearLayout? = null
     private var mAgoTextView: TextView? = null
@@ -27,17 +28,50 @@ public class ListNotesItemLayout(private val mContext: Context, attrs: Attribute
     private var mClipImageView: ImageView? = null
     private var mDeleteTextView: TextView? = null
 
-    var mNote: Note? = null
+    private var mNote: Note? = null
+    private var mDragHelper: ViewDragHelper? = null
 
-    fun setNote(note: Note) {
-        mNote = note
-        //todo
-        mSummaryTextView?.setText(mNote?.getTitle())
-        mTimeTextView?.setText(mNote?.getModifyTime())
+    public constructor(context: Context) : super(context) {
+        init()
     }
 
-    fun getNote() : Note? {
-        return mNote
+    public constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init()
+    }
+
+    public constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
+
+    public constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+        init()
+    }
+
+    public fun init() {
+        mDragHelper = ViewDragHelper.create(this, 1.0f, object : ViewDragHelper.Callback() {
+            override fun tryCaptureView(child: View, pointerId: Int): Boolean {
+                return child == mDetailLinearLayout
+            }
+
+            override public fun clampViewPositionHorizontal(child: View, left: Int, dx: Int): Int {
+                val newLeft = Math.min(getResources()
+                        .getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left), Math.max(left, 0)) //TODO
+                return newLeft
+            }
+
+            override public fun getViewHorizontalDragRange(child: View): Int {
+                return getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
+            }
+        })
+    }
+
+    override public fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+        return mDragHelper!!.shouldInterceptTouchEvent(ev)
+    }
+
+    override public fun onTouchEvent(event: MotionEvent): Boolean {
+        mDragHelper!!.processTouchEvent(event)
+        return true
     }
 
     public fun open() {
@@ -68,5 +102,22 @@ public class ListNotesItemLayout(private val mContext: Context, attrs: Attribute
         mFavImageView = findViewById(R.id.imageview_fav) as ImageView
         mClipImageView = findViewById(R.id.imageview_clip) as ImageView
         mDeleteTextView = findViewById(R.id.button_delete) as TextView
+
+        mDetailLinearLayout?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+
+            }
+        })
+    }
+
+    fun setNote(note: Note) {
+        mNote = note
+        //todo
+        mSummaryTextView?.setText(mNote?.title)
+        mTimeTextView?.setText(mNote?.modifyTime)
+    }
+
+    fun getNote(): Note? {
+        return mNote
     }
 }

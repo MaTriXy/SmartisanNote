@@ -20,7 +20,7 @@
         android:text="@string/delete"
         android:textColor="@android:color/white"
         android:textSize="@dimen/button_text_size"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <LinearLayout
         android:id="@id/linearlayout_detail"
