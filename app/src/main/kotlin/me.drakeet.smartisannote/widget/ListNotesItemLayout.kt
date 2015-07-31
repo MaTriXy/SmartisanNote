@@ -34,6 +34,7 @@ public class ListNotesItemLayout : RelativeLayout {
     private val mAutoFullShowPos = Point()
 
     private var mDragDistence: Int = 0
+    private var mIsOpen = false
 
     public constructor(context: Context) : super(context) {
         init()
@@ -53,7 +54,7 @@ public class ListNotesItemLayout : RelativeLayout {
 
     public fun init() {
         mDragDistence = getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
-        mDragHelper = ViewDragHelper.create(this, 1.0f, object : ViewDragHelper.Callback() {
+        mDragHelper = ViewDragHelper.create(this, 2.0f, object : ViewDragHelper.Callback() {
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {
                 return child == mDetailLinearLayout
             }
@@ -73,12 +74,15 @@ public class ListNotesItemLayout : RelativeLayout {
                         mDragHelper!!.settleCapturedViewAt(mAutoFullShowPos.x, mAutoFullShowPos.y)
                     } else {
                         mDragHelper!!.settleCapturedViewAt(mAutoBackOriginPos.x, mAutoBackOriginPos.y)
+                        close()
                     }
                     invalidate()
                 }
             }
 
-
+            override fun onViewPositionChanged(changedView: View?, left: Int, top: Int, dx: Int, dy: Int) {
+                if (left > 0) open() else close()
+            }
         })
     }
 
@@ -98,20 +102,23 @@ public class ListNotesItemLayout : RelativeLayout {
     }
 
     public fun open() {
+        if (mIsOpen) return
         mDeleteTextView?.setVisibility(View.VISIBLE)
-        mClipImageView?.setBackgroundResource(R.drawable.note_item_clip_up)
+        mClipImageView!!.setBackgroundResource(R.drawable.note_item_clip_up)
         mDetailLinearLayout?.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
-                close()
                 return true
             }
         })
+        mIsOpen = true
     }
 
     public fun close() {
+        if (!mIsOpen) return
         mDeleteTextView?.setVisibility(View.GONE)
-        mClipImageView?.setBackgroundResource(R.drawable.note_item_clip_normal)
+        mClipImageView!!.setBackgroundResource(R.drawable.note_item_clip_normal)
         mDetailLinearLayout?.setOnTouchListener(null)
+        mIsOpen = false
     }
 
     override protected fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
