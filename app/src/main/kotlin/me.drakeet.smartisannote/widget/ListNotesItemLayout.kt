@@ -33,7 +33,7 @@ public class ListNotesItemLayout : RelativeLayout {
     private val mAutoBackOriginPos = Point()
     private val mAutoFullShowPos = Point()
 
-    private var mDragDistence: Int = 0
+    private var mDragDistance: Int = 0
     private var mIsOpen = false
 
     public constructor(context: Context) : super(context) {
@@ -53,24 +53,24 @@ public class ListNotesItemLayout : RelativeLayout {
     }
 
     public fun init() {
-        mDragDistence = getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
+        mDragDistance = getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
         mDragHelper = ViewDragHelper.create(this, 2.0f, object : ViewDragHelper.Callback() {
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {
                 return child == mDetailLinearLayout
             }
 
             override public fun clampViewPositionHorizontal(child: View, left: Int, dx: Int): Int {
-                val newLeft = Math.min(mDragDistence, Math.max(left, 0)) //TODO
+                val newLeft = Math.min(mDragDistance, Math.max(left, 0)) //TODO
                 return newLeft
             }
 
             override public fun getViewHorizontalDragRange(child: View): Int {
-                return mDragDistence
+                return mDragDistance
             }
 
             override public fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
                 if (releasedChild === mDetailLinearLayout) {
-                    if (xvel > mDragDistence / 3) {
+                    if (xvel > mDragDistance / 3) {
                         mDragHelper!!.settleCapturedViewAt(mAutoFullShowPos.x, mAutoFullShowPos.y)
                     } else {
                         mDragHelper!!.settleCapturedViewAt(mAutoBackOriginPos.x, mAutoBackOriginPos.y)
@@ -126,7 +126,7 @@ public class ListNotesItemLayout : RelativeLayout {
 
         mAutoBackOriginPos.x = mDetailLinearLayout!!.getLeft()
         mAutoBackOriginPos.y = mDetailLinearLayout!!.getTop()
-        mAutoFullShowPos.x = mDragDistence
+        mAutoFullShowPos.x = mDragDistance
         mAutoFullShowPos.y = mDetailLinearLayout!!.getTop()
     }
 
