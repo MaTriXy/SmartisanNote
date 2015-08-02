@@ -6,6 +6,7 @@ import android.support.v4.widget.ViewDragHelper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewConfiguration
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -35,6 +36,7 @@ public class ListNotesItemLayout : RelativeLayout {
 
     private var mDragDistance: Int = 0
     private var mIsOpen = false
+    private var mContext: Context? = null
 
     public constructor(context: Context) : super(context) {
         init()
@@ -54,6 +56,8 @@ public class ListNotesItemLayout : RelativeLayout {
 
     public fun init() {
         mDragDistance = getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
+        var lastPosition: Int = 0
+        var lastDx: Int = 0
         mDragHelper = ViewDragHelper.create(this, 2.0f, object : ViewDragHelper.Callback() {
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {
                 return child == mDetailLinearLayout
@@ -68,9 +72,14 @@ public class ListNotesItemLayout : RelativeLayout {
                 return mDragDistance
             }
 
+            override fun onViewDragStateChanged(state: Int) {
+                super.onViewDragStateChanged(state)
+            }
+
             override public fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
                 if (releasedChild === mDetailLinearLayout) {
-                    if (xvel > mDragDistance / 3) {
+
+                    if (lastDx > 0 && lastPosition > mDragDistance / 3 || lastDx < 0 && lastPosition < mDragDistance * 2/3) {
                         mDragHelper!!.settleCapturedViewAt(mAutoFullShowPos.x, mAutoFullShowPos.y)
                     } else {
                         mDragHelper!!.settleCapturedViewAt(mAutoBackOriginPos.x, mAutoBackOriginPos.y)
@@ -81,6 +90,8 @@ public class ListNotesItemLayout : RelativeLayout {
             }
 
             override fun onViewPositionChanged(changedView: View?, left: Int, top: Int, dx: Int, dy: Int) {
+                lastPosition = left
+                lastDx = dx
                 if (left > 0) open() else close()
             }
         })
