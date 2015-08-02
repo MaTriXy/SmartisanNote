@@ -30,7 +30,7 @@ public class NoteListAdapter(val mContext: Context, val mList: List<Note>) : Rec
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_note, parent, false)
             }
         }
-        // 这里的 ViewHolder 的 Type 可能还没初始化，所以得手动传入... 使用 viewHolder.getItemViewType() 可能回出问题
+        // 这里的 ViewHolder 的 Type 可能还没初始化，所以得手动传入... 使用 viewHolder.getItemViewType() 可能会出问题
         return ViewHolder(view!!, viewType)
     }
 
