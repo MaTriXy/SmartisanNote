@@ -55,7 +55,7 @@ public class NoteListAdapter(val mContext: Context, val mList: List<Note>) : Rec
         return mList.size() + 1
     }
 
-    public fun setOnMeizhiTouchListener(onNoteTouchListener: OnNoteTouchListener) {
+    public fun setOnNoteTouchListener(onNoteTouchListener: OnNoteTouchListener) {
         this.mOnNoteTouchListener = onNoteTouchListener
     }
 
