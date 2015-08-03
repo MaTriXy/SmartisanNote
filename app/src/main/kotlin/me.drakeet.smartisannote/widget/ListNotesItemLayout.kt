@@ -36,7 +36,6 @@ public class ListNotesItemLayout : RelativeLayout {
 
     private var mDragDistance: Int = 0
     private var mIsOpen = false
-    private var mContext: Context? = null
 
     public constructor(context: Context) : super(context) {
         init()
