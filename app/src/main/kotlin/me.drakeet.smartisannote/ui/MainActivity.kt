@@ -27,7 +27,6 @@ public class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initListData();
         setUpRecyclerView()
-
     }
 
     private fun initListData() {
