@@ -1,4 +1,6 @@
-An unofficial Smartisan Notes, developed in kotlin.
+An unofficial Smartisan Notes, developed in Kotlin programming language.
+
+<img src="http://ww2.sinaimg.cn/large/86e2ff85gw1ew45wnrxe2j20k00zkwjs.jpg" alt="screenshot" title="screenshot" width="270" height="486" />
 
 ## About me
 
