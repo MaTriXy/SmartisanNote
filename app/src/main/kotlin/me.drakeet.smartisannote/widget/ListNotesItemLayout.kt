@@ -42,19 +42,15 @@ public class ListNotesItemLayout : RelativeLayout {
     private var mDragDistance: Int = 0
     private var mIsOpen = false
 
-    public constructor(context: Context) : super(context) {
-        init()
-    }
+    public constructor(context: Context) : this(context, null)
 
-    public constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
+    public constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    public constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init()
-    }
+    public constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(context,
+            attrs, defStyleAttr, 0)
 
-    public constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+    public constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes:
+    Int) : super(context, attrs, defStyleAttr, defStyleRes) {
         init()
     }
 
