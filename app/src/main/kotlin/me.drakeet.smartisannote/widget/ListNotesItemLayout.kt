@@ -6,7 +6,6 @@ import android.support.v4.widget.ViewDragHelper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewConfiguration
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -29,7 +28,13 @@ public class ListNotesItemLayout : RelativeLayout {
     private var mClipImageView: ImageView? = null
     private var mDeleteTextView: TextView? = null
 
-    private var mNote: Note? = null
+    public var mNote: Note? = null
+        set(value) {
+            mNote = value
+            //todo
+            mSummaryTextView?.text = mNote?.title
+            mTimeTextView?.text = mNote?.modifyTime
+        }
     private var mDragHelper: ViewDragHelper? = null
     private val mAutoBackOriginPos = Point()
     private val mAutoFullShowPos = Point()
@@ -54,7 +59,7 @@ public class ListNotesItemLayout : RelativeLayout {
     }
 
     public fun init() {
-        mDragDistance = getResources().getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
+        mDragDistance = resources.getDimensionPixelSize(R.dimen.item_drag_to_show_delete_button_left)
         var lastPosition: Int = 0
         var lastDx: Int = 0
         mDragHelper = ViewDragHelper.create(this, 2.0f, object : ViewDragHelper.Callback() {
@@ -78,7 +83,7 @@ public class ListNotesItemLayout : RelativeLayout {
             override public fun onViewReleased(releasedChild: View, xvel: Float, yvel: Float) {
                 if (releasedChild === mDetailLinearLayout) {
 
-                    if (lastDx > 0 && lastPosition > mDragDistance / 3 || lastDx < 0 && lastPosition < mDragDistance * 2/3) {
+                    if (lastDx > 0 && lastPosition > mDragDistance / 3 || lastDx < 0 && lastPosition < mDragDistance * 2 / 3) {
                         mDragHelper!!.settleCapturedViewAt(mAutoFullShowPos.x, mAutoFullShowPos.y)
                     } else {
                         mDragHelper!!.settleCapturedViewAt(mAutoBackOriginPos.x, mAutoBackOriginPos.y)
@@ -113,7 +118,7 @@ public class ListNotesItemLayout : RelativeLayout {
 
     public fun open() {
         if (mIsOpen) return
-        mDeleteTextView?.setVisibility(View.VISIBLE)
+        mDeleteTextView?.visibility = View.VISIBLE
         mClipImageView!!.setBackgroundResource(R.drawable.note_item_clip_up)
         mDetailLinearLayout?.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -125,7 +130,7 @@ public class ListNotesItemLayout : RelativeLayout {
 
     public fun close() {
         if (!mIsOpen) return
-        mDeleteTextView?.setVisibility(View.GONE)
+        mDeleteTextView?.visibility = View.GONE
         mClipImageView!!.setBackgroundResource(R.drawable.note_item_clip_normal)
         mDetailLinearLayout?.setOnTouchListener(null)
         mIsOpen = false
@@ -134,10 +139,10 @@ public class ListNotesItemLayout : RelativeLayout {
     override protected fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
 
-        mAutoBackOriginPos.x = mDetailLinearLayout!!.getLeft()
-        mAutoBackOriginPos.y = mDetailLinearLayout!!.getTop()
+        mAutoBackOriginPos.x = mDetailLinearLayout!!.left
+        mAutoBackOriginPos.y = mDetailLinearLayout!!.top
         mAutoFullShowPos.x = mDragDistance
-        mAutoFullShowPos.y = mDetailLinearLayout!!.getTop()
+        mAutoFullShowPos.y = mDetailLinearLayout!!.top
     }
 
     override protected fun onFinishInflate() {
@@ -157,16 +162,5 @@ public class ListNotesItemLayout : RelativeLayout {
 
             }
         })
-    }
-
-    fun setNote(note: Note) {
-        mNote = note
-        //todo
-        mSummaryTextView?.setText(mNote?.title)
-        mTimeTextView?.setText(mNote?.modifyTime)
-    }
-
-    fun getNote(): Note? {
-        return mNote
     }
 }
